@@ -1,0 +1,97 @@
+html,
+body,
+div,
+p {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,
+body {
+	height: 100%;
+}
+body {
+	/*background-color: #000;*/
+}
+#site-header {
+	height: 4rem;
+	background-color: #663399;
+	width: 100%;
+	color: #FFF;
+	z-index: 99999;
+}
+#matrix-content {
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center;
+	z-index: 10;
+}
+#show-variables {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+}
+.block-alxs-matrix-alxs-matrix-rain {
+	height: 100%;
+	width: 100%;
+	top: 0;
+	display: table;
+}
+#matrix-rain {
+	width: 100%;
+	max-width: 100%;
+	position: relative;
+	height: 100%;
+}
+#main {
+	position: relative;
+	min-height: 100%;
+	padding: 1em;
+	background-color: #fff;
+	box-sizing: border-box;
+	width: 100%;
+}
+#hide-wrapper {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	line-height: 2rem;
+	text-align: center;
+}
+#hide-wrapper .fa {
+	display: block;
+}
+#hide-matrix {
+	color: #663399;
+	margin-left: auto;
+	margin-right: auto;
+	bottom: 50px;
+	text-transform: uppercase;
+	font-weight:600;
+	text-decoration: none;
+}
+#debug-tools {
+	position: fixed;
+	bottom: 1rem;
+	right: 1rem;
+	width: 12rem;
+	padding: 0;
+	background-color: #1d1d1d;
+}
+#debug-tools a {
+	text-align: center;
+	display: block;
+	border-radius: 5px;
+	color: #FFF;
+	background-color: #663399;
+	padding: 0.25rem 0.9rem;
+	font-size: 0.85rem;
+	margin: 0.5rem;
+	text-decoration: none;
+	text-transform: uppercase;
+}
