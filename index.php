@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<header id="site-header">
-		
+			<a id="brand" href="/">jQuery Matrix Rain</a>
 		</header>
 		<section class="block-alxs-matrix-alxs-matrix-rain">
 			<canvas id="matrix-rain">Sorry, your browser is not supported</canvas>

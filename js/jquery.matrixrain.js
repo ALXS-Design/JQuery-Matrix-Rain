@@ -3,8 +3,8 @@
 
 		// Init Settings
 		var settings = $.extend({
-			backgroundColor: "#eee",
-			color: "#639",
+			backgroundColor: "#639",
+			color: "#fff",
 			canvasId: "matrix-rain",
 			showContent: true,
 			text: "<h3>Welcome to</h3><h2>ALXS Design</h2>"
@@ -41,7 +41,7 @@
 			$('#main').css({'position': 'absolute', 'top': windowHeight});
 			if(settings.showContent ==true) {
 				$('section').prepend('<div id="matrix-content">' + settings.text +'</div>');
-				$('#matrix-content').css({'height': canvasHeight});
+				$('#matrix-content').css({'position': 'absolute', 'top': '50%','transform': 'translate(0,-50%)'});
 				$('#' + settings.canvasId).height(canvasHeight)
 			}
 		}

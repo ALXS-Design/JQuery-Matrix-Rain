@@ -15,20 +15,40 @@ body {
 }
 #site-header {
 	height: 4rem;
-	background-color: #663399;
+	background-color: #FFFFFF;
 	width: 100%;
-	color: #FFF;
+	color: #663399;
 	z-index: 99999;
+	box-shadow: 0px 0px 3px #FFF;
+}
+#brand {
+	line-height: 4rem;
+	margin: 0;
+	padding: 0 0.725rem;
+	font-size: 1.6rem;
+	box-sizing: border-box;
+	text-decoration: none;
+	text-transform: uppercase;
+	border-right: 1px solid #663399;
+	display: inline-block;
+	-webkit-transition: text-shadow 0.5s ease-in 0s;
+	-moz-transition: text-shadow 0.5s ease-in 0s;
+	-o-transition: text-shadow 0.5s ease-in 0s;
+	-ms-transition: text-shadow 0.5s ease-in 0s;
+	transition: text-shadow 0.5s ease-in 0s; 
+}
+#brand:hover,
+#brand:focus {
+	text-shadow: 2px 2px 3px #000;
 }
 #matrix-content {
 	top: 0;
 	left: 0;
 	right: 0;
 	width: 100%;
-	display: table-cell;
-	vertical-align: middle;
 	text-align: center;
 	z-index: 10;
+	transform: translate(0,-50%);
 }
 #show-variables {
 	color: #FFF;
@@ -39,7 +59,6 @@ body {
 	height: 100%;
 	width: 100%;
 	top: 0;
-	display: table;
 }
 #matrix-rain {
 	width: 100%;
