@@ -12,14 +12,15 @@ body {
 }
 body {
 	/*background-color: #000;*/
+	color: #eeeeee;
 }
 #site-header {
 	height: 4rem;
-	background-color: #FFFFFF;
+	background-color: #eeeeee;
 	width: 100%;
 	color: #663399;
 	z-index: 99999;
-	box-shadow: 0px 0px 3px #FFF;
+	box-shadow: 0px 0px 3px #eeeeee;
 }
 #brand {
 	line-height: 4rem;
@@ -51,7 +52,7 @@ body {
 	transform: translate(0,-50%);
 }
 #show-variables {
-	color: #FFF;
+	color: #eeeeee;
 	text-transform: uppercase;
 	text-decoration: none;
 }
@@ -68,11 +69,11 @@ body {
 }
 #main {
 	position: relative;
-	min-height: 100%;
 	padding: 1em;
-	background-color: #fff;
+	background-color: #eeeeee;
 	box-sizing: border-box;
 	width: 100%;
+	color: #663399;
 }
 #hide-wrapper {
 	position: absolute;
@@ -86,7 +87,7 @@ body {
 	display: block;
 }
 #hide-matrix {
-	color: #663399;
+	color: #eeeeee;
 	margin-left: auto;
 	margin-right: auto;
 	bottom: 50px;
@@ -100,13 +101,13 @@ body {
 	right: 1rem;
 	width: 12rem;
 	padding: 0;
-	background-color: #1d1d1d;
+	background-color: #eeeeee;
 }
 #debug-tools a {
 	text-align: center;
 	display: block;
 	border-radius: 5px;
-	color: #FFF;
+	color: #eeeeee;
 	background-color: #663399;
 	padding: 0.25rem 0.9rem;
 	font-size: 0.85rem;

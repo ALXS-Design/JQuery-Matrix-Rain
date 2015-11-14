@@ -4,7 +4,7 @@
 		// Init Settings
 		var settings = $.extend({
 			backgroundColor: "#639",
-			color: "#fff",
+			textColor: "#eee",
 			canvasId: "matrix-rain",
 			showContent: true,
 			text: "<h3>Welcome to</h3><h2>ALXS Design</h2>"
@@ -37,8 +37,8 @@
 
 		// Initialize the matrix
 		function matrixInit() {
-			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'position': 'absolute', 'top': navHeight});
-			$('#main').css({'position': 'absolute', 'top': windowHeight});
+			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'position': 'absolute', 'top': navHeight, 'color': settings.textColor, 'background-color': settings.backgroundColor});
+			$('#main').css({'position': 'absolute', 'top': windowHeight, 'min-height': canvasHeight});
 			if(settings.showContent ==true) {
 				$('section').prepend('<div id="matrix-content">' + settings.text +'</div>');
 				$('#matrix-content').css({'position': 'absolute', 'top': '50%','transform': 'translate(0,-50%)'});
@@ -48,15 +48,13 @@
 		matrixInit();
 
 		// Set <body> CSS
-		function setBodyCSS() {
+		function setBodyCSS(overflow) {
 			$('body').css({
-				color: settings.color,
-				backgroundColor: settings.backgroundColor,
-				overflow: "hidden"
+				overflow: overflow
 			});
 			if (window.console) console.log('Body CSS set.');
 		};
-		setBodyCSS();
+		setBodyCSS("hidden");
 
 		// Hide the matrix
 		function hideMatrix() {
@@ -69,7 +67,9 @@
 			}, 250, function() {
 				if (window.console) console.log('Hiding matrix');
 				$('#matrix-rain').parent().slideUp(1000);
-				$('#main').animate({top: navHeight}, 500);
+				$('#main').animate({top: navHeight}, 500, function() {
+					setBodyCSS("auto");
+				});
 				if (window.console) console.log('Made the matrix disappear');
 			});
 		};
