@@ -27,8 +27,8 @@
 		<footer id="site-footer">
 		</footer>
 		<div id="debug-tools">
-			<a href="#" id="log-settings">Log Settings</a>
-			<a href="#" id="log-globals">Log Vars</a>
+			<a href="log.settings" alt="Log Settings" id="log-settings">Log Settings</a>
+			<a href="log.variables" alt="Log Variables" id="log-globals">Log Vars</a>
 		</div>
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="js/jquery.requestAnimationFrame.min.js"></script>
