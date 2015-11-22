@@ -33,10 +33,12 @@
 		<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="js/jquery.requestAnimationFrame.min.js"></script>
 		<script src="js/jquery.matrixrain.js" ></script>
-		<script src="js/index.js" ></script>
 		<script>
 			$(document).ready(function() {
-				$().matrixrain();
+				$('#matrix-rain').matrixrain({
+					backgroundColor: '#000',
+					textColor: '#eee'
+				});
 			});
 		</script>
 	</body>
