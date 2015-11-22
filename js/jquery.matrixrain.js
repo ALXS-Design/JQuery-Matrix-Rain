@@ -109,7 +109,6 @@
 				M.createCode();
 
 				window.onresize = function () {
-					var navHeight = $('#' + settings.navId).height();
 					window.cancelAnimationFrame(M.animation);
 					M.animation = null;
 					M.ctx.clearRect(0, 0, M.WIDTH, M.HEIGHT);
@@ -117,6 +116,7 @@
 
 					M.WIDTH = window.innerWidth;
 					M.HEIGHT = canvasHeight;
+					M.init();
 				};
 			},
 
@@ -373,12 +373,7 @@
 
 		// Initialize the matrix
 		function matrixInit() {
-			var navHeight = $('#' + settings.navId).outerHeight();
-			var windowWidth = $(window).width();
-			var windowHeight = $(window).height();
-		    var canvasHeight = windowHeight-navHeight;
 
-			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'position': 'absolute', 'top': navHeight, 'color': settings.textColor, 'background-color': settings.backgroundColor});
 			$('#main').css({'position': 'absolute', 'top': windowHeight, 'min-height': canvasHeight});
 			if(settings.showContent == true) {
 				if($('#matrix-content').length == 0) {
@@ -389,12 +384,19 @@
 			}
 			showGlobals(false);
 			M.init();
-
 		}
 		matrixInit();
+
+		// Reset CSS positioning
 		$(window).resize(function(){
-			matrixInit();
+			var navHeight = $('#' + settings.navId).outerHeight();
+			var windowWidth = $(window).width();
+			var windowHeight = $(window).height();
+		    var canvasHeight = windowHeight-navHeight;
+			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'top': navHeight});
+			$('#' + settings.canvasId).height(canvasHeight);
 		});
+
 		// Set <body> CSS
 		function setBodyCSS(overflow) {
 			$('body').css({
