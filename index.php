@@ -37,7 +37,10 @@
 			$(document).ready(function() {
 				$('#matrix-rain').matrixrain({
 					backgroundColor: '#000',
-					textColor: '#eee'
+					textColor: '#eee',
+					colWidth: 25,
+					velMin: 1,
+					velMax: 4
 				});
 			});
 		</script>
