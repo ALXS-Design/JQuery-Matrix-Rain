@@ -1,6 +1,21 @@
 (function($) {
 	$.fn.matrixrain = function( options ) {
 
+		function hexToRgb(hex) {
+		    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+		    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+		    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+		        return r + r + g + g + b + b;
+		    });
+
+		    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+		    return result ? {
+		        r: parseInt(result[1], 16),
+		        g: parseInt(result[2], 16),
+		        b: parseInt(result[3], 16)
+		    } : null;
+		}
+
 		// Empty Variables
 		var animation = null;
 		var c = null;
@@ -16,9 +31,9 @@
 		var settings = $.extend({
 			debug: true,
 			backgroundColor: "#FFF",
-			textColor: "#333",
-			shadowColor: "rgba(172,52,185,0.5)",
-			codeColor: 'rgb(0,140,186)',
+			textColor: "#008CBA",
+			shadowColor: "#000000",
+			codeColor: '#008CBA',
 			canvasId: "matrix-rain",
 			showContent: true,
 			text: "<h3>Welcome to</h3><h2>ALXS Design</h2>",
@@ -31,15 +46,24 @@
 			font: "30px matrix-code",
 			letters: ['c', 'o', 'd', 'e', 'b', 'u', 's', 't', 'a'],
 			codes: ['codebusta'],
-			navId: 'site-header'
+			navClass: 'top-bar'
 		}, options);
 		if (window.console) console.log('Settings initialised');
 
+		settings.codeColor = hexToRgb(settings.codeColor).r + ',' + hexToRgb(settings.codeColor).g + ',' + hexToRgb(settings.codeColor).b;
+		settings.shadowColor = hexToRgb(settings.shadowColor).r + ',' + hexToRgb(settings.shadowColor).g + ',' + hexToRgb(settings.shadowColor).b;
+
 		// Setup global variables
-		var navHeight = $('#' + settings.navId).outerHeight();
+		var navHeight = $('.' + settings.navClass).outerHeight();
+		var toolbarHeight = $('#toolbar').outerHeight();
+		var fullNav = navHeight+toolbarHeight;
+		if($('.block-alxs-matrix').parent(".columns").length > 0)
+		{
+		   	$('.block-alxs-matrix').parent(".columns").css({padding: '0px'});
+		}
 		var windowWidth = $(window).width();
 		var windowHeight = $(window).height();
-	    var canvasHeight = windowHeight-navHeight;
+	    var canvasHeight = windowHeight-fullNav;
 		if (window.console) console.log('Global variables set');
 
 		// Matrix code object literal
@@ -223,7 +247,7 @@
 						newCtx.shadowOffsetY = 0;
 						newCtx.shadowBlur = 10;
 						newCtx.globalAlpha = 0.3;
-						newCtx.fillStyle = settings.codeColor;
+						newCtx.fillStyle = 'rgb(' + settings.codeColor + ')';
 					} else if (j > (codeLen - 4)) {
 						fadeStrength = j / codeLen;
 						fadeStrength = 1 - fadeStrength;
@@ -232,13 +256,13 @@
 						newCtx.shadowOffsetY = 0;
 						newCtx.shadowBlur = 0;
 						newCtx.globalAlpha = 0.9;
-						newCtx.fillStyle = settings.codeColor;
+						newCtx.fillStyle = 'rgb(' + settings.codeColor + ')';
 					} else {
 						newCtx.shadowOffsetX = 0;
 						newCtx.shadowOffsetY = 0;
 						newCtx.shadowBlur = 0;
 						newCtx.globalAlpha = 0.6;
-						newCtx.fillStyle = settings.codeColor;
+						newCtx.fillStyle = 'rgb(' + settings.codeColor + ')';
 					}
 
 					newCtx.fillText(text, 0, (canvHeight - (j * M.settings.COL_HEIGHT)));
@@ -345,7 +369,9 @@
 				console.log('Global Variables:');
 				console.log('Window Width: ' + windowWidth);
 				console.log('Window Height: ' + windowHeight);
+				console.log('Full Nav Height: ' + fullNav);
 				console.log('Nav Height: ' + navHeight);
+				console.log('Toolbar Height: ' + toolbarHeight);
 				console.log('Canvas Height: ' + canvasHeight);
 			}
 		}
@@ -368,33 +394,40 @@
 		}
 
 		// Append test content to body
-		$('#main').append('<h3>This height of the header is ' + navHeight + 'px</h3>');
-		if (window.console) console.log('Content appended');
+		// $('#main').append('<h3>This height of the header is ' + navHeight + 'px</h3>');
+		// if (window.console) console.log('Content appended');
 
 		// Initialize the matrix
 		function matrixInit() {
 
 			$('#main').css({'position': 'absolute', 'top': windowHeight, 'min-height': canvasHeight});
+			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'top': '0px'});
 			if(settings.showContent == true) {
 				if($('#matrix-content').length == 0) {
-					$('section').prepend('<div id="matrix-content">' + settings.text +'</div>');
+					$('<div id="matrix-content">' + settings.text +'</div>').insertBefore('#matrix-rain');
 				}
 				$('#matrix-content').css({'position': 'absolute', 'top': '50%','transform': 'translate(0,-50%)'});
-				$('#' + settings.canvasId).height(canvasHeight);
+				$('#matrix-content *').css({'color': settings.textColor});
+				$('#' + settings.canvasId).height(canvasHeight).css({'height': canvasHeight});
 			}
 			showGlobals(false);
 			M.init();
 		}
 		matrixInit();
 
-		// Reset CSS positioning
+		// // Reset CSS positioning
 		$(window).resize(function(){
-			var navHeight = $('#' + settings.navId).outerHeight();
-			var windowWidth = $(window).width();
-			var windowHeight = $(window).height();
-		    var canvasHeight = windowHeight-navHeight;
-			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'top': navHeight});
-			$('#' + settings.canvasId).height(canvasHeight);
+		// 	var navHeight = $('.' + settings.navClass).outerHeight();
+			toolbarHeight = $('#toolbar').height();
+			navHeight = $('.' + settings.navClass).outerHeight();
+			if($('#toolbar').length) {
+				fullNav = navHeight + toolbarHeight;
+			}
+			canvasHeight = windowHeight-fullNav;
+			$('.block-alxs-matrix-alxs-matrix-rain').css({'height': canvasHeight, 'top': '0px'});
+			$('#' + settings.canvasId).height(canvasHeight).css({'height': canvasHeight});
+			$('body').css({'padding-top': toolbarHeight});
+			showGlobals(false);
 		});
 
 		// Set <body> CSS
